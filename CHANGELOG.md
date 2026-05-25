@@ -5,6 +5,12 @@ All notable changes to this plugin will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.2] - 2026-05-26
+
+### Fixed
+
+- **Plugin install rejected manifest**: `author: Invalid input: expected object, received string`. The plugin manifest `author` field must be an object `{"name": ..., "email"?: ..., "url"?: ...}`, not a bare string. Changed `"author": "DreamLinx"` → `"author": {"name": "DreamLinx"}`. (Verified all other manifest fields — `repository`, `homepage`, `license`, `keywords` — are already correctly typed per the [manifest schema](https://code.claude.com/docs/en/plugins-reference#plugin-manifest-schema).)
+
 ## [0.1.1] - 2026-05-26
 
 ### Fixed
