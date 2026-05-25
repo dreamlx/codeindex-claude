@@ -5,6 +5,14 @@ All notable changes to this plugin will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.1] - 2026-05-26
+
+### Fixed
+
+- **Plugin install failed** with "source type your Claude Code version does not support". Two spec-compliance bugs found by attempting `/plugin install` for real:
+  - Marketplace plugin `source` was `"."` — the relative-path source type **must start with `./`** and point to a subdirectory within the marketplace repo. Restructured to the canonical layout (`plugins/codeindex/` subdir) with `source: "./plugins/codeindex"`, matching the official walkthrough.
+  - `hooks/hooks.json` used a flat `{matcher, command}` shape. Correct schema nests `hooks: [{type: "command", command: ...}]` under each matcher entry. Also fixed the SessionStart matcher from `"*"` (invalid) to `"startup|resume|clear"` (valid SessionStart matcher values).
+
 ## [0.1.0] - 2026-05-25
 
 **Initial release** — bootstrapping the plugin distribution per

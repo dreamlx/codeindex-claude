@@ -7,7 +7,7 @@
   "plugins": [
     {
       "name": "codeindex",
-      "source": ".",
+      "source": "./plugins/codeindex",
       "description": "Claude Code skills + SessionStart hook for the codeindex CLI"
     }
   ]
