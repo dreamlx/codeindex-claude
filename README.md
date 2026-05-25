@@ -50,16 +50,25 @@ Clone this repo and run Claude Code with `--plugin-dir`:
 
 ```bash
 git clone https://github.com/dreamlx/codeindex-claude
-claude --plugin-dir ./codeindex-claude
+claude --plugin-dir ./codeindex-claude/plugins/codeindex
 ```
+
+Note `--plugin-dir` points at the **plugin directory** (the one containing `.claude-plugin/plugin.json`), i.e. `plugins/codeindex`, not the repo root. Use `/reload-plugins` to hot-reload after editing files. This local-dir path is the recommended loop for developing/testing the plugin — it bypasses the marketplace clone entirely.
 
 ## Updates
 
 ```bash
+/plugin marketplace update codeindex-claude
 /plugin update codeindex@codeindex-claude
 ```
 
 The CLI itself is updated independently via `pipx upgrade ai-codeindex`.
+
+> **If an update doesn't seem to take** (you still see old behavior after `marketplace update`): Claude Code's local marketplace clone can stay pinned at an old commit even when `update` reports success. Force-refresh the clone:
+> ```bash
+> git -C ~/.claude/plugins/marketplaces/codeindex-claude pull --ff-only
+> ```
+> then retry `/plugin update`. The nuclear option is `/plugin marketplace remove codeindex-claude` + `/plugin marketplace add dreamlx/codeindex-claude` (this also uninstalls then needs reinstall of the plugin).
 
 ## Uninstall
 
