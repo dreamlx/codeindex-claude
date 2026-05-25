@@ -1,0 +1,12 @@
+{
+  "name": "codeindex-claude",
+  "description": "Personal marketplace for the codeindex Claude Code plugin. Single-plugin marketplace until accepted into the official community marketplace.",
+  "owner": "dreamlx",
+  "plugins": [
+    {
+      "name": "codeindex",
+      "source": "./",
+      "description": "Claude Code skills + hooks for the codeindex CLI"
+    }
+  ]
+}
