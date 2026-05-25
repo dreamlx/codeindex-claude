@@ -1,0 +1,14 @@
+{
+  "name": "codeindex-claude",
+  "description": "Personal marketplace for the codeindex Claude Code plugin. Single-plugin marketplace until accepted into anthropics/claude-plugins-community.",
+  "owner": {
+    "name": "dreamlx"
+  },
+  "plugins": [
+    {
+      "name": "codeindex",
+      "source": ".",
+      "description": "Claude Code skills + SessionStart hook for the codeindex CLI"
+    }
+  ]
+}
