@@ -12,13 +12,33 @@ Generate AI-friendly index files (`README_AI.md`) for codebases using the codein
 
 ## Workflow
 
-### Step 1: Initialize (if needed)
+### Step 0: Surface What Will Change
+
+Before initializing, enumerate what `codeindex init` will mutate so the user can confirm:
 
 ```bash
-cat .codeindex.yaml 2>/dev/null || codeindex init --yes
+ls .codeindex.yaml 2>/dev/null || echo "(no .codeindex.yaml — will be created)"
+ls README_AI.md   2>/dev/null || echo "(no README_AI.md — will be created at repo root)"
+grep -l codeindex CLAUDE.md   2>/dev/null || echo "(no codeindex section in CLAUDE.md — will be injected)"
+grep README_AI.md .gitignore  2>/dev/null || echo "(.gitignore will get README_AI.md added)"
 ```
 
-`--yes` for non-interactive default config (CI-friendly).
+`codeindex init` creates / modifies up to **4 files**:
+
+- `.codeindex.yaml` (configuration)
+- `.gitignore` (adds `README_AI.md`)
+- `CLAUDE.md` (injects `## codeindex` section)
+- `README_AI.md` (empty stub at repo root)
+
+**If any of those matter to the user, ask before proceeding** (e.g. user already has a hand-maintained CLAUDE.md, or wants `README_AI.md` git-tracked). Only skip the confirmation if the repo is clearly fresh or the user has explicitly consented.
+
+### Step 1: Initialize
+
+```bash
+codeindex init --yes
+```
+
+`--yes` for non-interactive default config (CI-friendly). Only run after Step 0 surfaces the mutation set and the user has consented.
 
 ### Step 2: Review Configuration
 

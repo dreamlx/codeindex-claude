@@ -131,21 +131,3 @@ codeindex hooks install post-commit --force
 | Want manual control | `mode: prompt` — notification only, run `codeindex affected --update` yourself |
 | Virtual env not found | Ensure `.venv/` or `venv/` exists at project root, or hook will still try `codeindex` from PATH |
 | Old hook style | `codeindex hooks install post-commit --force` upgrades to thin wrapper |
-
-## Advanced: CLAUDE.md Integration
-
-Add this snippet to the project's CLAUDE.md so Claude Code agents know about the auto-update:
-
-```markdown
-## Documentation Auto-Updates
-
-This project uses codeindex with post-commit hooks.
-README_AI.md files auto-update when code changes.
-
-- **Read README_AI.md first** before exploring source code
-- After modifying code, README_AI.md updates on next commit
-- To manually update: `codeindex scan ./path/to/dir`
-- To check coverage: `codeindex status`
-```
-
-(Or use the `codeindex:update-guide` skill to refresh your CLAUDE.md to the latest template.)

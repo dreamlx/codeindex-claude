@@ -5,6 +5,17 @@ All notable changes to this plugin will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.6] - 2026-05-26
+
+### Removed
+
+- **`update-guide` skill** — Phase J data shows CLAUDE.md tool-selection guide injection actively hurts quality (0.83 → 0.67). This skill's entire raison d'être was running `codeindex claude-md update` to inject a codeindex教程 into `CLAUDE.md` — proven net-negative. CLI command `codeindex claude-md update` is preserved for users who manually manage `CLAUDE.md`; the plugin no longer promotes that workflow.
+- **`hooks/SKILL.md` — "Advanced: CLAUDE.md Integration" section (was lines 135–151)** — same Phase J evidence. Telling agents to "Read `README_AI.md` first" via `CLAUDE.md` injection over-constrains. Benchmark WITH `README_AI.md` (no `CLAUDE.md` guide) already won (-28% token / -19% time) — file presence alone is sufficient.
+
+### Changed
+
+- **`index/SKILL.md`** — added Step 0 "Surface What Will Change" with explicit enumeration of the 4 files `codeindex init` mutates (`.codeindex.yaml`, `.gitignore`, `CLAUDE.md`, `README_AI.md`). Addresses prompt-2 dogfood finding: `init --yes` was modifying 4 files without surfacing the mutation set. Skill now requires the agent to disclose mutations before applying.
+
 ## [0.1.5] - 2026-05-26
 
 ### Removed
