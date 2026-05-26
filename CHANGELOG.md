@@ -5,6 +5,18 @@ All notable changes to this plugin will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased] — methodology sink
+
+### Added
+
+- **`tests/eval/` — V0 eval harness + `METHODOLOGY.md`** documenting confounds caught during first dogfood attempts. V0 harness preserved as evidence of measurement bugs, **not as quality data**. V1 design requirements specified for future plugin changes.
+
+### Retroactive notes on prior releases (calibration signal)
+
+- **v0.1.3 (skill description third-person refactor) — unmeasured cargo cult.** First dogfood batch falsified the working hypothesis: precise third-person trigger phrases matching the user prompt do **not** force the agent to invoke the skill. Description is a hint, not a force. Net measurable impact on `arch_simple` prompt: agent still chose `Grep` over `Skill(codeindex:arch)`.
+- **v0.1.4 (hook version check + contract CI) — production-side only.** Both improvements verify the plugin doesn't break itself; neither was shown to improve consumer-side metrics. First dogfood showed plugin presence on `arch_simple` cost **+124%** and time **+84%** vs no-plugin baseline, with the codeindex skill never invoked. Net per-prompt regression on simple navigation.
+- **Implication**: future skill/hook/workflow changes block on V1 harness output. See `tests/eval/METHODOLOGY.md`.
+
 ## [0.1.4] - 2026-05-26
 
 ### Added

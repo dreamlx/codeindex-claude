@@ -1,3 +1,10 @@
 .DS_Store
 *.swp
 *.swo
+
+# codeindex - AI-generated indexes (regenerate with: codeindex scan-all)
+README_AI.md
+
+# eval harness raw output (200KB+ per batch, regen via tests/eval/run-batch.sh)
+tests/eval/runs/
+tests/eval/report.md

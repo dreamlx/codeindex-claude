@@ -1,0 +1,6 @@
+# id<TAB>prompt<TAB>expected_skill   (lines starting with # are skipped)
+arch_simple	where is the SessionStart hook implemented in this plugin?	codeindex:arch
+index_fresh	index this project for AI agents	codeindex:index
+hooks_setup	set up auto-update for documentation when I commit	codeindex:hooks
+update_check	is my CLAUDE.md current with the latest codeindex version?	codeindex:update-guide
+noise_helloworld	write a hello world in python	(none)
