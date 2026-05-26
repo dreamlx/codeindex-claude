@@ -70,10 +70,50 @@ SessionStart hook implemented in **the codeindex plugin at ~/path**?"
 across all conditions in a single A/B. Prompt-formulation variants are
 a **separate** experiment, not part of baseline.
 
+### C4: `claude -p` headless mode does not support skill workflow
+
+**Hard constraint, not a configuration issue.**
+
+Direct evidence from V0 batch 2 (all 4 codeindex skills):
+
+```
+✗ ERROR Skill(codeindex:arch)         is_error=True, content="Execute skill: codeindex:arch"
+✗ ERROR Skill(codeindex:index)        is_error=True
+✗ ERROR Skill(codeindex:hooks)        is_error=True
+✗ ERROR Skill(codeindex:update-guide) is_error=True
+```
+
+Hypothesis "permission UI blocks Skill in headless" tested with
+`--permission-mode bypassPermissions` — falsified. Bypassing permissions
+caused the agent to **skip Skill entirely** and route to `Grep` + `Read`
+directly. Skill workflow never ran cleanly under any headless config.
+
+Same prompts in **interactive** mode (manual session, prompt 2 dogfood)
+ran the index skill end-to-end: `init` → `scan-all` → `AskUserQuestion`
+→ file write. Interactive works; headless does not.
+
+→ **Any A/B harness built on `claude -p` measures "system-prompt
+including skill descriptions changes agent tool selection" — it does
+NOT measure plugin skill workflow value.** Treat headless metrics as a
+proxy for "description influence on top-level tool routing," not as
+plugin value measurement.
+
+Real plugin measurement requires one of:
+- **tmux + interactive `claude`** with send-keys + capture-pane (brittle
+  ANSI parsing, timing-sensitive, permission-UI automation needed)
+- **Claude Code SDK** if one with skill support becomes available
+- Accept that some plugin classes are effectively un-A/B-testable
+  programmatically — fall back to manual fresh-session dogfood
+
 ## V1 harness requirements
 
 Before any future plugin/middleware change is shipped:
 
+0. **Pick the right surface for the question** (because of C4):
+   - "Does description X improve top-level tool routing?" → `claude -p`
+     headless is fine
+   - "Does skill workflow X improve task completion?" → must use
+     interactive (tmux) or accept manual dogfood
 1. **Scope cleanup** — disable user-scope for A condition, re-enable for B
 2. **N ≥ 3** samples per cell
 3. **Median + IQR + p90** reporting, not raw single numbers

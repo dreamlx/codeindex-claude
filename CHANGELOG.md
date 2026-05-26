@@ -9,7 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- **`tests/eval/` — V0 eval harness + `METHODOLOGY.md`** documenting confounds caught during first dogfood attempts. V0 harness preserved as evidence of measurement bugs, **not as quality data**. V1 design requirements specified for future plugin changes.
+- **`tests/eval/` — V0 eval harness + `METHODOLOGY.md`** documenting **four** confounds caught during first dogfood attempts. V0 harness preserved as evidence of measurement bugs, **not as quality data**. V1 design requirements specified for future plugin changes.
+- **C4 (hard constraint)**: `claude -p` headless mode returns `is_error=True` for every Skill invocation regardless of `--permission-mode` setting. `bypassPermissions` causes the agent to skip Skill entirely and fall back to `Grep`/`Read`. Interactive `claude` runs skills end-to-end. Implication: any `claude -p`-based harness measures "system-prompt skill descriptions changing tool routing", **not** plugin skill workflow value. To measure workflow, use tmux + interactive `claude` (brittle ANSI parsing) or accept manual dogfood.
 
 ### Retroactive notes on prior releases (calibration signal)
 
