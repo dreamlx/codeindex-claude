@@ -5,7 +5,7 @@ All notable changes to this plugin will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.1.4] - unreleased
+## [0.1.4] - 2026-05-26
 
 ### Added
 
@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Notes
 
-- **Not tagged yet.** The hook `MIN_CLI_VERSION=0.25.0` is forward-looking; once `ai-codeindex` 0.25.0 ships to PyPI, run `git tag v0.1.4 <commit>` + `git push origin v0.1.4`. Until then, the plugin still works on CLI ≥ 0.23.2 (every referenced command already exists) but users see the version warning at session start.
+- Tagged at commit `402b6dd` after `ai-codeindex 0.25.0` reached GA (PyPI 2026-05-26T06:34:13Z, GitHub release 06:34:18Z).
 - ADR reference: this implements the "engine vs reach layer" pattern documented in [codeindex ADR-006](https://github.com/dreamlx/codeindex/blob/master/docs/architecture/adr/006-distribution-architecture-split.md) — the version check and contract test are the *reach layer* (plugin) verifying it can still drive the *engine* (CLI).
 
 ## [0.1.3] - 2026-05-26
