@@ -1,6 +1,7 @@
 ---
 name: hooks
-description: Set up codeindex Git hooks for automatic README_AI.md updates on commit. Use when user wants auto-updating documentation, git hook setup for codeindex, or automatic index refresh when code changes. Triggered by "set up auto-update", "install hooks", "auto-update README_AI.md", "keep docs in sync".
+description: This skill should be used when the user asks to "set up auto-update", "install codeindex hooks", "auto-update README_AI.md", "keep docs in sync", or wants Git hooks that automatically refresh codeindex README_AI.md files when code changes are committed.
+version: 0.1.3
 ---
 
 # codeindex:hooks — Auto-Update Hooks Setup
@@ -133,7 +134,7 @@ codeindex hooks install post-commit --force
 
 ## Advanced: CLAUDE.md Integration
 
-Add this to your project's CLAUDE.md so Claude Code agents know about the auto-update:
+Add this snippet to the project's CLAUDE.md so Claude Code agents know about the auto-update:
 
 ```markdown
 ## Documentation Auto-Updates

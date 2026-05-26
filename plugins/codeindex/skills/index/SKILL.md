@@ -1,6 +1,7 @@
 ---
 name: index
-description: Generate AI-friendly code index using the codeindex CLI. Use when user wants to index a project, generate README_AI.md files, create code documentation, or make codebase searchable. Triggered by "index this project", "generate code index", "create documentation", "scan codebase".
+description: This skill should be used when the user asks to "index this project", "generate code index", "scan codebase", "create AI documentation", or wants README_AI.md files generated for a codebase so it becomes searchable by AI agents. Wraps the codeindex CLI.
+version: 0.1.3
 ---
 
 # codeindex:index — Repository Indexing

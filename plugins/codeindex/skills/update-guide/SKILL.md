@@ -1,7 +1,7 @@
 ---
 name: update-guide
-description: Refresh the codeindex section in your project's CLAUDE.md to the latest version, with project-specific suggestions. Use when user upgrades codeindex and wants their CLAUDE.md guidance updated, or asks "is my CLAUDE.md current".
-user_invocable: true
+description: This skill should be used when the user asks to "refresh codeindex guide", "update CLAUDE.md codeindex section", "is my CLAUDE.md current", or upgrades the codeindex CLI and wants the project's CLAUDE.md guidance synced to the new version. Provides project-specific suggestions tailored to detected languages and config.
+version: 0.1.3
 ---
 
 # codeindex:update-guide — CLAUDE.md Refresh
