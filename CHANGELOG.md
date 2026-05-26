@@ -5,7 +5,11 @@ All notable changes to this plugin will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] — methodology sink
+## [0.1.5] - 2026-05-26
+
+### Removed
+
+- **`arch` skill** — benchmark + dogfood + Phase J data show **0 marginal value**. The codeindex benchmark's `-28% token / -19% time` win was measured **without any skill loaded**, only with `README_AI.md` files present — agent reads them spontaneously. `arch/SKILL.md` teaches that same workflow, so its marginal contribution to the win is zero. Dogfood `prompt 1` directly observed: `arch` loaded but the agent chose `Grep` over `Skill(codeindex:arch)` despite the description's trigger phrase matching exactly. Phase J (a benchmark side experiment) also showed description-layer invocation guides **hurt** quality (0.83 → 0.67). Removing 0-value skill is hygiene, not new investment — consistent with the v0.1.4 frozen philosophy.
 
 ### Added
 
@@ -16,7 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **v0.1.3 (skill description third-person refactor) — unmeasured cargo cult.** First dogfood batch falsified the working hypothesis: precise third-person trigger phrases matching the user prompt do **not** force the agent to invoke the skill. Description is a hint, not a force. Net measurable impact on `arch_simple` prompt: agent still chose `Grep` over `Skill(codeindex:arch)`.
 - **v0.1.4 (hook version check + contract CI) — production-side only.** Both improvements verify the plugin doesn't break itself; neither was shown to improve consumer-side metrics. First dogfood showed plugin presence on `arch_simple` cost **+124%** and time **+84%** vs no-plugin baseline, with the codeindex skill never invoked. Net per-prompt regression on simple navigation.
-- **Implication**: future skill/hook/workflow changes block on V1 harness output. See `tests/eval/METHODOLOGY.md`.
+- **Implication**: future skill/hook/workflow changes block on V1 harness output. See `tests/eval/METHODOLOGY.md`. Honest value positioning: codeindex delivers efficiency (token/time at equal quality), not comprehension/correctness; plugin is "user-facing discovery surface", not invocation engineering.
 
 ## [0.1.4] - 2026-05-26
 
