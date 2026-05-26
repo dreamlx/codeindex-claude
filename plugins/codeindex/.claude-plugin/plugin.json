@@ -1,7 +1,7 @@
 {
   "name": "codeindex",
   "description": "Claude Code integration for the codeindex CLI: skills for code navigation (arch), repository indexing (index), git-hook setup (hooks), and CLAUDE.md maintenance (update-guide). Requires the ai-codeindex CLI on PATH — install with `pipx install ai-codeindex`.",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "author": {
     "name": "DreamLinx"
   },

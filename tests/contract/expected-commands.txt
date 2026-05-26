@@ -1,0 +1,26 @@
+# Contract: every CLI subcommand the plugin skills shell out to.
+# One entry per line — `codeindex <entry> --help` is run for each.
+# Blank lines and `#` comments are ignored.
+#
+# When a skill starts calling a new `codeindex <cmd>`, add it here.
+# This is intentionally manual: forces review of the plugin↔CLI contract.
+
+# Top-level
+status
+init
+list-dirs
+scan
+scan-all
+affected
+
+# claude-md group (CLAUDE.md maintenance)
+claude-md
+claude-md status
+claude-md update
+
+# hooks group (Git auto-update)
+hooks
+hooks status
+hooks install
+hooks uninstall
+hooks run

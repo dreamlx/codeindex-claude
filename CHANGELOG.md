@@ -5,6 +5,19 @@ All notable changes to this plugin will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.4] - unreleased
+
+### Added
+
+- **CLI version check in SessionStart hook**. `check-codeindex.sh` parses `codeindex --version` and warns when the installed CLI is below `MIN_CLI_VERSION="0.25.0"` — the floor for `codeindex claude-md` / `affected` subcommands the plugin skills depend on. Non-blocking warning, matches the existing "not on PATH" behavior.
+- **Contract CI** (`.github/workflows/contract.yml`): on every push and PR, installs `ai-codeindex` from `git+https://github.com/dreamlx/codeindex.git@develop` and runs `tests/contract/check-commands.sh`, which `--help`-tests every CLI subcommand the plugin skills reference (14 commands across `scan`, `claude-md`, `hooks`, etc.). Catches plugin↔CLI drift at PR review time rather than in user shells.
+- **Contract whitelist** (`tests/contract/expected-commands.txt`): manually curated list of CLI subcommands the plugin depends on. Adding a new CLI call to a skill requires touching this file too — intentional friction to force review of the contract.
+
+### Notes
+
+- **Not tagged yet.** The hook `MIN_CLI_VERSION=0.25.0` is forward-looking; once `ai-codeindex` 0.25.0 ships to PyPI, run `git tag v0.1.4 <commit>` + `git push origin v0.1.4`. Until then, the plugin still works on CLI ≥ 0.23.2 (every referenced command already exists) but users see the version warning at session start.
+- ADR reference: this implements the "engine vs reach layer" pattern documented in [codeindex ADR-006](https://github.com/dreamlx/codeindex/blob/master/docs/architecture/adr/006-distribution-architecture-split.md) — the version check and contract test are the *reach layer* (plugin) verifying it can still drive the *engine* (CLI).
+
 ## [0.1.3] - 2026-05-26
 
 ### Changed
